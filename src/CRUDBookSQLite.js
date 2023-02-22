@@ -18,14 +18,15 @@ db.run(`CREATE TABLE IF NOT EXISTS books (
 
 
 
-// route to get all books app.get('/books', (req, res) => {
-db.all('SELECT * FROM books', (err, rows) => {
-    if (err) {
-        res.status(500).send(err);
-    } else {
-        res.json(rows);
-    }
-});
+app.get('/books', (req, res) => {
+    db.all('SELECT * FROM books', (err, rows) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.json(rows);
+        }
+    });
+})
 
 // route to get a book by id
 app.get('/books/:id', (req, res) => {
